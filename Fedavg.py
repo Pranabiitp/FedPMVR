@@ -63,33 +63,6 @@ def create_cnn_model(input_shape=(32, 32, 3), num_classes=10):
 global_model = create_cnn_model()
 
 
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[3]:
-
-
 
 
 def create_clients(data_dict):
@@ -106,27 +79,6 @@ def create_clients(data_dict):
     return data_dict
 
 
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[4]:
-
-
 
 def test_model(X_test, Y_test,  model, comm_round):
 #     cce = tf.keras.losses.CategoricalCrossentropy(from_logits=True)
@@ -138,10 +90,6 @@ def test_model(X_test, Y_test,  model, comm_round):
 #     acc = accuracy_score( tf.argmax(Y_test, axis=1),tf.argmax(logits, axis=1))
     print('comm_round: {} | global_acc: {:.3%} | global_loss: {}'.format(comm_round, accuracy, loss))
     return accuracy, loss
-
-
-# In[5]:
-
 
 
 
@@ -163,14 +111,6 @@ def avg_weights(scaled_weight_list):
         
     return avg_grad
 
-
-# In[18]:
-
-
-
-
-
-# In[6]:
 
 
 import numpy as np
@@ -236,14 +176,6 @@ for i in range(len(client_train_data)):
     globals()[f"label{i+1}"] = client_train_labels[i]
 
 
-# In[1]:
-
-
-# train4.shape
-
-
-# In[2]:
-
 
 # import matplotlib.pyplot as plt
 
@@ -265,7 +197,6 @@ for i in range(len(client_train_data)):
 # plt.show()
 
 
-# In[ ]:
 
 
 import matplotlib.pyplot as plt
@@ -418,94 +349,6 @@ client_data2 = {
 #create clients
 clients_batched = create_clients(client_data2)
 
-
-# In[4]:
-
-
-# label.shape
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
 # initialize global model
 # print(data_list.shape,labels)
 
@@ -525,23 +368,6 @@ global_model.summary()
 # global_model.get_weights()
 client_names = list(clients_batched.keys())
 client_names
-
-
-# In[ ]:
-
-
-
-label1.shape
-
-
-# In[ ]:
-
-
-np.min(train4)
-
-
-# In[6]:
-
 
 comms_round = 200  # Number of global epochs
 acc3 = []
@@ -659,224 +485,6 @@ for comm_round in range(comms_round):
 global_model.set_weights(best_weights)        
 
 
-# In[ ]:
-
-
-
-
-
-# In[7]:
-
-
-# # import matplotlib.pyplot as plt
-# plt.plot(acc3,color='red')
-# plt.title("FL vs communication rounds")
-# plt.grid(visible=True)
-# plt.legend(loc='right')
-# # plt.ylim(.6,.9)
-# plt.xlabel("FL rounds/Data sharing epochs")
-# plt.ylabel("Test accuracy")
-
-
-# In[8]:
-
-
-# global_model.evaluate(test,label)
-
-
-# In[9]:
-
-
-from sklearn.metrics import accuracy_score, cohen_kappa_score, matthews_corrcoef, f1_score
-from sklearn.metrics import balanced_accuracy_score, confusion_matrix, precision_score, recall_score, roc_auc_score
-
-# Assuming you have predictions and true labels
-y_true = label # Replace with your true labels
-y_pred = global_model.predict(test)
-y_true = np.argmax(y_true, axis=1)
-y_pred = np.argmax(y_pred, axis=1)
-
-# Calculate Accuracy
-acc = accuracy_score(y_true, y_pred)
-
-# Calculate Cohen's Kappa
-kappa = cohen_kappa_score(y_true, y_pred)
-
-# Calculate Matthews Correlation Coefficient
-mcc = matthews_corrcoef(y_true, y_pred)
-
-# Calculate Balanced Accuracy
-bacc = balanced_accuracy_score(y_true, y_pred)
-
-# Calculate F1 Score
-f1 = f1_score(y_true, y_pred, average='weighted')  # Use 'weighted' for multiclass
-
-# Calculate Precision for multiclass
-precision = precision_score(y_true, y_pred, average='weighted')
-
-# Calculate Recall for multiclass
-recall = recall_score(y_true, y_pred, average='weighted')
-
-
-
-# # Calculate AUC (Area Under the Curve)
-# # roc_auc = roc_auc_score(y_true, y_pred, average='weighted')
-
-# # Create a confusion matrix
-# conf_matrix = confusion_matrix(y_true, y_pred)
-
-# # Calculate Geometric Mean from the confusion matrix
-# # tn, fp, fn, tp, = conf_matrix.ravel()
-# # g_mean = (tp / (tp + fn)) * (tn / (tn + fp))**0.5
-
-# # Print or use these metrics as needed
-print("Accuracy:", acc)
-print("Cohen's Kappa:", kappa)
-print("Matthews Correlation Coefficient:", mcc)
-print("Balanced Accuracy:", bacc)
-print("F1 Score:", f1)
-print("Precision:", precision)
-print("Recall:", recall)
-# print("AUC (Area Under the Curve):", roc_auc)
-# print("Geometric Mean:", g_mean)
-from sklearn.metrics import roc_auc_score
-
-# Assuming you have true labels and predicted probabilities for each class
-y_true = label  # Replace with your true labels
-y_prob = global_model.predict(test)  # Replace with your predicted probabilities
-
-# # Calculate AUC for multiclass classification
-auc = roc_auc_score(y_true, y_prob, average='weighted')
-
-# # Print or use the AUC value as needed
-print("AUC (Area Under the Curve):", auc)
-from sklearn.metrics import confusion_matrix
-import numpy as np
-
-# Assuming you have true labels and predicted labels for multiclass classification
-y_true = one_hot_labels  # Replace with your true labels
-y_pred = global_model.predict(test)  # Replace with your predicted labels
-
-# Convert true and predicted labels to class labels (not one-hot encoded)
-y_true = np.argmax(y_true, axis=1)
-y_pred = np.argmax(y_pred, axis=1)
-
-# Calculate G-Mean for each class
-class_g_means = []
-for class_label in range(5):  # Replace num_classes with the number of classes
-    # Create a binary confusion matrix for the current class
-    true_class = (y_true == class_label)
-    pred_class = (y_pred == class_label)
-    tn, fp, fn, tp = confusion_matrix(true_class, pred_class).ravel()
-
-    # Calculate Sensitivity (True Positive Rate) and Specificity (True Negative Rate)
-    sensitivity = tp / (tp + fn)
-    specificity = tn / (tn + fp)
-
-    # Calculate G-Mean for the current class
-    g_mean = np.sqrt(sensitivity * specificity)
-
-    class_g_means.append(g_mean)
-
-# Calculate the overall G-Mean (geometric mean of class G-Means)
-overall_g_mean = np.prod(class_g_means) ** (1 / len(class_g_means))
-
-# Print or use the overall G-Mean as needed
-print("Overall G-Mean:", overall_g_mean)
-
-
-# In[ ]:
-
-
-plt.plot(range(1,len(acc3)+1),train_acc_clients[0],label='train')
-plt.plot(range(1,len(acc3)+1),val_acc_clients[0],color='red',label='val')
-# plt.ylim(0.95,.999)
-
-
-# In[ ]:
-
-
-plt.plot(range(1,len(acc3)+1),train_acc_clients[1])
-plt.plot(range(1,len(acc3)+1),val_acc_clients[1],color='red')
-plt.ylim(0.90,.999)
-
-
-# In[ ]:
-
-
-plt.plot(range(1,len(acc3)+1),train_acc_clients[0])
-plt.plot(range(1,len(acc3)+1),val_acc_clients[0],color='red')
-plt.ylim(0.5,.999)
-
-
-# In[14]:
-
-
-acccc=np.array(acc3)
-
-
-# In[15]:
-
-
-np.save("acc_fedavg_alpha=0.1",acccc)
-
-
-# In[16]:
-
-
-losss=np.array(loss3)
-np.save("loss_fedavg_alpha=0.1",losss)
-
-
-# In[17]:
-
-
-global_model.save("fedavg(alpha=0.1).h5")
-
-
-# In[ ]:
-
-
-global_model.evaluate(test1,one_hot_labels1)
-
-
-# In[ ]:
-
-
-# !pip list
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
 
 
 
