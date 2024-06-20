@@ -1,5 +1,5 @@
 ## FedPMVR: Addressing Data Heterogeneity in Federated Learning through Partial Momentum Variance Reduction
-This repository contains the code for the paper FedPMVR: Addressing Data Heterogeneity in Federated Learning through Partial Momentum Variance Reduction.
+This repository contains the code for the paper "FedPMVR: Addressing Data Heterogeneity in Federated Learning through Partial Momentum Variance Reduction".
 
 # Dependencies
 - Tensorflow = 2.10.0
