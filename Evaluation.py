@@ -1,8 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
 
 from sklearn.metrics import accuracy_score, cohen_kappa_score, matthews_corrcoef, f1_score
 from sklearn.metrics import balanced_accuracy_score, confusion_matrix, precision_score, recall_score, roc_auc_score
