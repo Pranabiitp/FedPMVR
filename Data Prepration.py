@@ -1,14 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
-
-#CIFAR10
-
-
-# In[ ]:
-
 
 import numpy as np
 import tensorflow as tf
@@ -74,13 +63,6 @@ for i in range(len(client_train_data)):
     globals()[f"label{i+1}"] = client_train_labels[i]
 
 
-# In[1]:
-
-
-#MNIST
-
-
-# In[ ]:
 
 
 import numpy as np
@@ -149,14 +131,6 @@ for i in range(len(client_train_data)):
 
 # Now, client_train_data[i] and client_train_labels[i] contain the data and corresponding one-hot labels for the i-th client
 
-
-# In[2]:
-
-
-#FMNIST
-
-
-# In[ ]:
 
 
 import numpy as np
