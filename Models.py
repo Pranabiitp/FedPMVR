@@ -1,13 +1,7 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
 
 
 # Model for CIFAR10
 
-
-# In[3]:
 
 
 import numpy as np
@@ -60,13 +54,13 @@ def create_cnn_model(input_shape=(32, 32, 3), num_classes=10):
     return model
 
 
-# In[4]:
+
 
 
 # Model for MNIST and FMNIST
 
 
-# In[ ]:
+
 
 
 import tensorflow as tf
