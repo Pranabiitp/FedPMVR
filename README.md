@@ -6,7 +6,7 @@ This repository contains the code for the paper "FedPMVR: Addressing Data Hetero
 - scikit-learn = 1.3.2
 
 # Data Preparing
-To divide the dataset into the aprequired no. of clients, run Data Prepration.py and choose the required dataset (CIFAR10, MNIST or FMNIST) and then change the degree of heterogenity (beta) as required. you will get the desired distribution for each client.
+To divide the dataset into the required no. of clients, run Data Prepration.py and choose the required dataset (CIFAR10, MNIST or FMNIST) and then change the degree of heterogenity (beta) as required. you will get the desired distribution for each client.
 
 # Model Structure
 To choose the appropriate  model, run Models.py and choose the required model for each of the dataset.
