@@ -12,7 +12,7 @@ To divide the dataset into the required no. of clients, run Data Prepration.py a
 To choose the appropriate  model, run Models.py and choose the required model for each of the dataset.
 
 # Run FedPMVR
-After done with above process, you can run the FedPMVR, our proposed method.
+After done with above process, you can run the FedPMVR, our proposed method by running FedPMVR.py.
 
 # Evaluation
 After federated training, run Evaluation.py to acess the evaluation metrics such as accuracy, precision, recall etc.
